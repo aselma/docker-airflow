@@ -5,7 +5,7 @@
 # SOURCE: https://github.com/puckel/docker-airflow
 
 FROM python:3.6-slim
-MAINTAINER Puckel_
+MAINTAINER Andrés
 
 # Never prompts the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -35,9 +35,9 @@ RUN set -ex \
         libpq-dev \
         git \
     ' \
-    && apt-get update -yqq \
-    && apt-get upgrade -yqq \
-    && apt-get install -yqq --no-install-recommends \
+    && apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
         $buildDeps \
         python3-pip \
         python3-requests \
@@ -60,25 +60,15 @@ RUN set -ex \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql]==$AIRFLOW_VERSION \
-    && pip install celery[redis]==4.0.2 \
-    && apt-get purge --auto-remove -yqq $buildDeps \
-    && apt-get autoremove -yqq --purge \
-    && apt-get clean \
-    && rm -rf \
-        /var/lib/apt/lists/* \
-        /tmp/* \
-        /var/tmp/* \
-        /usr/share/man \
-        /usr/share/doc \
-        /usr/share/doc-base
+    && pip install celery[redis]==4.0.2
 
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
-RUN chown -R airflow: ${AIRFLOW_HOME}
+#RUN chown -R airflow: ${AIRFLOW_HOME}
 
 EXPOSE 8080 5555 8793
 
-USER airflow
-WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["/entrypoint.sh"]
+#USER airflow
+#WORKDIR ${AIRFLOW_HOME}
+#ENTRYPOINT ["/entrypoint.sh"]
