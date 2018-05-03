@@ -49,6 +49,7 @@ RUN set -ex \
         rsync \
         netcat \
         locales \
+        nano \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
@@ -62,7 +63,7 @@ RUN set -ex \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql]==$AIRFLOW_VERSION \
     && pip install celery[redis]==4.0.2
 
-COPY script/entrypoint.sh /entrypoint.sh
+COPY script/entrypoint.sh /start.sh
 COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 #RUN chown -R airflow: ${AIRFLOW_HOME}
@@ -71,4 +72,4 @@ EXPOSE 8080 5555 8793
 
 #USER airflow
 #WORKDIR ${AIRFLOW_HOME}
-#ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/start.sh"]

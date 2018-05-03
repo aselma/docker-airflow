@@ -17,6 +17,58 @@ This repository contains **Dockerfile** of [apache-airflow](https://github.com/a
 
 /!\ If you want to use Airflow using Python 2, use TAG [1.8.1](https://github.com/puckel/docker-airflow/releases/tag/1.8.1)
 
+
+
+
+
+## Install & usage
+
+### Install docker if not installed
+
+https://docs.docker.com/docker-for-windows/install/
+
+### Git clone to a local folder
+
+```bash
+C:\Users\username> git clone https://github.com/aselma/docker-airflow.git
+```
+### Build the docker
+
+```bash
+C:\Users\aselma> docker build docker-airflow
+```
+
+### Check created image
+
+```bash
+C:\Users\aselma> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+<none>              <none>              0d5acec32785        A few seconds ago   1.04GB
+python              3.6-slim            bae9b96f0afd        12 days ago         162MB
+```
+
+### Get into the image as root ( IMAGE ID ) [1.04GB]
+
+```bash
+C:\Users\aselma> docker run -p 8080:8080 -it --user root 0d5acec32785 /bin/bash
+```
+
+### Airflow commands
+
+```bash
+root@01fc1fa6103e:/# airflow initdb
+```
+
+
+```bash
+root@01fc1fa6103e:/# airflow webserver -p 8080
+```
+
+
+
+
+
 ## Installation
 
 Pull the image from the Docker repository.
