@@ -35,13 +35,13 @@ C:\Users\username> git clone https://github.com/aselma/docker-airflow.git
 ### Build the docker
 
 ```bash
-C:\Users\aselma> docker build docker-airflow
+C:\Users\username> docker build docker-airflow
 ```
 
 ### Check created image
 
 ```bash
-C:\Users\aselma> docker images
+C:\Users\username> docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 <none>              <none>              0d5acec32785        A few seconds ago   1.04GB
@@ -51,7 +51,7 @@ python              3.6-slim            bae9b96f0afd        12 days ago         
 ### Get into the image as root ( IMAGE ID ) [1.04GB]
 
 ```bash
-C:\Users\aselma> docker run -p 8080:8080 -it --user root 0d5acec32785 /bin/bash
+C:\Users\username> docker run -p 8080:8080 -it --user root 0d5acec32785 /bin/bash
 ```
 
 ### Initialitation
@@ -101,7 +101,7 @@ http://localhost:8080/admin/
 ### Enyoy changing everything and customizing with the nano editor
 
 ```bash
-root@01fc1fa6103e:/# nano ./start.sh
+root@01fc1fa6103e:/# nano ./entrypoint.sh
 ```
 
 
