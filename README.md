@@ -54,6 +54,12 @@ python              3.6-slim            bae9b96f0afd        12 days ago         
 C:\Users\aselma> docker run -p 8080:8080 -it --user root 0d5acec32785 /bin/bash
 ```
 
+### Initialitation
+
+```bash
+root@01fc1fa6103e:/# ./entrypoint.sh
+```
+
 ### Airflow commands
 
 ```bash
@@ -63,10 +69,48 @@ root@01fc1fa6103e:/# airflow initdb
 
 ```bash
 root@01fc1fa6103e:/# airflow webserver -p 8080
+
+[2018-05-03 12:58:32,246] {__init__.py:45} INFO - Using executor SequentialExecutor
+  ____________       _____________
+ ____    |__( )_________  __/__  /________      __
+____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+ _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+/usr/local/lib/python3.6/site-packages/flask/exthook.py:71: ExtDeprecationWarning: Importing flask.ext.cache is deprecated, use flask_cache instead.
+  .format(x=modname), ExtDeprecationWarning
+[2018-05-03 12:58:32,820] {models.py:189} INFO - Filling up the DagBag from /root/airflow/dags
+Running the Gunicorn Server with:
+Workers: 4 sync
+Host: 0.0.0.0:8080
+Timeout: 120
+Logfiles: - -
+=================================================================
+[2018-05-03 12:58:33 +0000] [16] [INFO] Starting gunicorn 19.8.1
+[2018-05-03 12:58:33 +0000] [16] [INFO] Listening at: http://0.0.0.0:8080 (16)
+[2018-05-03 12:58:33 +0000] [16] [INFO] Using worker: sync
+ .
+ .
+ .
+```
+
+### Now you should have access to airflow front in your local host in the port 8080
+
+http://localhost:8080/admin/
+
+
+### Enyoy changing everything and customizing with the nano editor
+
+```bash
+root@01fc1fa6103e:/# nano ./start.sh
 ```
 
 
 
+=====================================================================
+=====================================================================
+# Official instructiona
+=====================================================================
+=====================================================================
 
 
 ## Installation
